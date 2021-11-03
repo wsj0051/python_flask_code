@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+    <form method="post">
+        {{ form.csrf_token}}
+        {{ form.user_name.label }} <p>{{ form.user_name}}</p>
+        {% for msg in form.user_name.errors %}
+        <p>{{ msg }}</p>
+        {% endfor %}
+
+        {{ form.password.label }} <p>{{ form.password }}</p>
+        {% for msg in form.password.errors %}
+        <p>{{ msg }}</p>
+        {% endfor %}
+
+        {{ form.re_password.label }}  <p>{{ form.re_password }}</p>
+        {% for msg in form.re_password.errors %}
+        <p>{{ msg }}</p>
+        {% endfor %}
+
+        {{ form.submit }}
+    </form>
+</body>
+</html>
