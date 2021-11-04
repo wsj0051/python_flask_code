@@ -13,8 +13,6 @@ app = Flask(__name__)
 # app.config.from_object(Config)
 
 
-
-
 # 转换器http://127.0.0.1:5050/goods/123
 # @app.route("/goods/<int:goods_id>")
 @app.route("/goods/<goods_id>")
@@ -58,7 +56,7 @@ def send_sms(mobile):
 
 @app.route("/index")
 def index():
-    url = url_for("send_sms",mobile="18912345678")
+    url = url_for("send_sms", mobile="18912345678")
     return redirect(url)
 
 
