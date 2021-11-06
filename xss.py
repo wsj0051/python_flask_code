@@ -14,7 +14,7 @@ def xss():
     text = ""
     if request.method == "POST":
         text = request.form.get("text")
-    return render_template("xss.html", text=text)
+    return render_template("cart.html", text=text)
 
 
 # Press the green button in the gutter to run the script.

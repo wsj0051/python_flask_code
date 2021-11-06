@@ -17,6 +17,15 @@ python author_book.py db migrate -m "add mobile"
 python author_book.py db history
 python author_book.py db downgrade 版本号
 ```
+## gunicorn
+windows上不支持，暂时没有测试
+```
+pip install gunicorn
+gunicorn -w 4 -b 127.0.0.1:5000 --access-logfile ./logs/log main:app
+gunicorn -w 4 -b 127.0.0.1:5000 -D --access-logfile ./logs/log main:app
+ps aux | grep gunicorn
+kill -9 11908
+```
 ## mysql使用sql记录
 ```
 mysql -hlocalhost -uroot -p
