@@ -4,6 +4,8 @@ from flask_wtf import FlaskForm
 from flask_sqlalchemy import SQLAlchemy
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__)
 
@@ -21,6 +23,12 @@ app.config.from_object(Config)
 
 # 创建数据库sqlalchemy工具对象
 db = SQLAlchemy(app)
+# 创建flask脚本管理工具对象
+manager = Manager(app=app)
+# 创建数据库迁移工具对象
+Migrate(app, db)
+# 向Manyr对象中添加数据库操作命令
+manager.add_command("db", MigrateCommand)
 
 
 # ihome -> ih_user 数据库名缩写_表名
@@ -32,6 +40,8 @@ class Author(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # 整型的主键会默认自增
     name = db.Column(db.String(32), unique=True)
     books = db.relationship("Book", backref="author")
+    email = db.Column(db.String(64))
+    mobile = db.Column(db.String(64))
 
     def __repr__(self):
         """定义之后，可以让对象显示的更直观"""
@@ -120,7 +130,9 @@ def delete_book_get():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # 通过manager启动程序
+    manager.run()
+    # app.run(debug=True)
     # 清除数据库所有数据
     # db.drop_all()
     # # 创建所有表
