@@ -11,4 +11,4 @@ def num_div(num1, num2):
 
 
 if __name__ == '__main__':
-    num_div(1, 0)
+    num_div(1, 2)
