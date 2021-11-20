@@ -16,8 +16,10 @@ def set_cookie():
 
 @app.route("/get_cookie")
 def get_cookie():
-    c = request.cookies.get("itcast")
-    return c
+    c = request.cookies.get("itcast3")
+    resp = make_response("itcast3:%s" % c)
+
+    return resp
 
 
 @app.route("/delete_cookie")
